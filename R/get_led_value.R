@@ -4,13 +4,13 @@
 #'
 #' @param x A LED instance.
 #'
-#' @return A logical of length one with the actual value of the led.
+#' @return A numeric of length one with the actual value of the led.
 #'
 #' @examples
 #' \dontrun{
-#' # Get a led instance with initial value TRUE.
-#' led <- get_led(14, TRUE)
-#' # Read the value of the led (should be TRUE).
+#' # Get a led instance with initial value 1 (maximum intensity).
+#' led <- get_led(14, 1)
+#' # Read the value of the led (should be 1).
 #' get_led_value(led)
 #' }
 #'
@@ -23,5 +23,5 @@ setGeneric("get_led_value", function(x) standardGeneric("get_led_value"))
 #' @export
 #'
 setMethod("get_led_value", "LED", function(x) {
-  as.logical(x@led$value)
+  x@led$value
 })

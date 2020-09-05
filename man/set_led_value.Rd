@@ -12,8 +12,8 @@ set_led_value(x, value)
 \arguments{
 \item{x}{A LED instance.}
 
-\item{value}{A logical of length one. If `FALSE`, the LED will be switched
-off. If `TRUE`, the LED will be switched on.}
+\item{value}{A numeric of length one. If 0, the LED will be off. Other
+values between 0 and 1 can be specified as brightness for the LED.}
 }
 \value{
 The same LED instance provided as input.
@@ -30,10 +30,10 @@ Sets the value of a given led instance.
 \dontrun{
 # Get a led instance.
 led <- get_led(14)
-# Turn the led on.
-set_led_value(led, TRUE)
+# Turn the led to its maximum intensity.
+set_led_value(led, 1)
 # Turn the led off.
-set_led_value(led, FALSE)
+set_led_value(led, 0)
 }
 
 }

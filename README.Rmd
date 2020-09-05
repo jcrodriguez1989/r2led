@@ -41,10 +41,10 @@ In this example, the LED is connected to the GPIO14 pin:
 ```{r eval = FALSE}
 # Load the library.
 library("r2led")
-# Get a led instance (by default, the initial value is FALSE, i.e. off).
+# Get a led instance (by default, the initial value is 0, i.e. off).
 led <- get_led(14)
-# Read the actual LED's value (should be FALSE).
+# Read the actual LED's value (should be 0).
 get_led_value(led)
-# Turn it on (TRUE).
+# Turn it on (1 or TRUE).
 set_led_value(led, TRUE)
 ```

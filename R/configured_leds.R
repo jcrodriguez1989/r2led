@@ -9,15 +9,14 @@ ConfiguredLeds <- setRefClass(
 #' @importFrom reticulate import
 # @param pin A character or numeric of length one with the GPIO pin that the
 #   led is connected to.
-# @param initial_value A logical of length one. If `FALSE` (the default), the
-#   LED will be off initially. If `NULL`, the LED will be left in whatever
-#   state the pin is found in when configured for output (warning: this can be
-#   on). If `TRUE`, the LED will be switched on initially.
+# @param initial_value A numeric of length one. If 0 (the default), the LED
+#   will be off initially. Other values between 0 and 1 can be specified as an
+#   initial brightness for the LED.
 config_led <- function(pin, initial_value) {
   # Import the gpiozero Python library.
   gpiozero <- import("gpiozero")
   # Create the led Python instance.
-  gpiozero$LED(pin = as.integer(pin), initial_value = initial_value)
+  gpiozero$PWMLED(pin = as.integer(pin), initial_value = initial_value)
 }
 
 # Set ConfiguredLeds methods.
@@ -26,10 +25,9 @@ ConfiguredLeds$methods(
   # exist, it will return it.
   # @param pin A character or numeric of length one with the GPIO pin that the
   #   led is connected to.
-  # @param initial_value A logical of length one. If `FALSE` (the default), the
-  #   LED will be off initially. If `NULL`, the LED will be left in whatever
-  #   state the pin is found in when configured for output (warning: this can be
-  #   on). If `TRUE`, the LED will be switched on initially.
+  # @param initial_value A numeric of length one. If 0 (the default), the LED
+  #   will be off initially. Other values between 0 and 1 can be specified as an
+  #   initial brightness for the LED.
   #' @importFrom methods new
   get_led = function(pin, initial_value) {
     # Try to get the configured led.
@@ -44,7 +42,7 @@ ConfiguredLeds$methods(
       leds[[pin_name]] <<- led
     } else {
       # If it exists, move it to the provided initial_value.
-      led@led$value <- initial_value
+      set_led_value(led, initial_value)
     }
     led
   }

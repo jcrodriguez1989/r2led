@@ -13,7 +13,7 @@ get_led_value(x)
 \item{x}{A LED instance.}
 }
 \value{
-A logical of length one with the actual value of the led.
+A numeric of length one with the actual value of the led.
 }
 \description{
 Gets the value of a given led instance.
@@ -25,9 +25,9 @@ Gets the value of a given led instance.
 
 \examples{
 \dontrun{
-# Get a led instance with initial value TRUE.
-led <- get_led(14, TRUE)
-# Read the value of the led (should be TRUE).
+# Get a led instance with initial value 1 (maximum intensity).
+led <- get_led(14, 1)
+# Read the value of the led (should be 1).
 get_led_value(led)
 }
 
